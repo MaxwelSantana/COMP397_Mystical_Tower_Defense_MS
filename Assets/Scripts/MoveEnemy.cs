@@ -43,7 +43,6 @@ public class MoveEnemy : MonoBehaviour
 
                 //AudioSource audioSource = gameObject.GetComponent<AudioSource>();
                 //AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
-                Debug.Log("PASSOU");
                 GameManager gameManager =
                     GameObject.Find("GameManager").GetComponent<GameManager>();
                 gameManager.Health -= 1;

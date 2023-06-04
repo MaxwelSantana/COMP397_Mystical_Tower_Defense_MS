@@ -34,8 +34,6 @@ public class Building : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("STARTED");
-        //Set currentPosition to current position of building 
         currentPosition = transform.position;
 
         //Get the scripts
@@ -117,7 +115,6 @@ public class Building : MonoBehaviour
     {
         zCordinateOfMouse = Camera.main.WorldToScreenPoint(transform.position).z;
         mouseOffset = transform.position - mouseWorldPos();
-        Debug.Log("gameManager.replaceMode: ");
         if (gameManager.buildingSelected == false)
         {
             if (gameManager.replaceMode == true)
@@ -148,7 +145,6 @@ public class Building : MonoBehaviour
 
     void OnMouseDrag()
     {
-        Debug.Log("OnMouseDrag: " + mouseDrag);
         if (mouseDrag == true)
         {
             transform.position = mouseWorldPos() + mouseOffset;
