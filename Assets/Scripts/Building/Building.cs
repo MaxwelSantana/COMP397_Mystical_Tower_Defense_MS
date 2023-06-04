@@ -1,3 +1,9 @@
+/*
+    Author: Maxwel Santana
+    Student Number: 301294337
+    File: Building
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
