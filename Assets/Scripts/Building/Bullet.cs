@@ -15,7 +15,6 @@ public class Bullet : MonoBehaviour
 
     private GameManager gameManager;
 
-    // Use this for initialization
     void Start()
     {
         startTime = Time.time;
@@ -24,7 +23,6 @@ public class Bullet : MonoBehaviour
         gameManager = gm.GetComponent<GameManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         float timeInterval = Time.time - startTime;
@@ -34,7 +32,6 @@ public class Bullet : MonoBehaviour
         {
             if (target != null)
             {
-                /*
                 Transform healthBarTransform = target.transform.Find("HealthBar");
                 HealthBar healthBar = healthBarTransform.gameObject.GetComponent<HealthBar>();
                 healthBar.currentHealth -= Mathf.Max(damage, 0);
@@ -42,12 +39,11 @@ public class Bullet : MonoBehaviour
                 if (healthBar.currentHealth <= 0)
                 {
                     Destroy(target);
-                    AudioSource audioSource = target.GetComponent<AudioSource>();
-                    AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
+                    //AudioSource audioSource = target.GetComponent<AudioSource>();
+                    //AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
 
                     gameManager.Gold += 50;
                 }
-                */
             }
             Destroy(gameObject);
         }
