@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -84,6 +85,11 @@ public class GameManager : MonoBehaviour
         //buildingSelected = true;
     }
 
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene("Level1");
+    }
+
     public void BuyBuilding(int number)
     {
         int buildingNumber = number;
@@ -97,8 +103,9 @@ public class GameManager : MonoBehaviour
         buildingSelected = true;
     }
 
-    public void GameOver(bool win)
+    public void GameOver()
     {
+        bool win = Health > 0;
         youWinLabel.SetActive(win);
         youLostLabel.SetActive(!win);
         gameOver.SetActive(true);

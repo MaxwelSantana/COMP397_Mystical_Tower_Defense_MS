@@ -62,7 +62,7 @@ public class SpawnEnemy : MonoBehaviour
         }
         else
         {
-            gameManager.GameOver(false);
+            gameManager.GameOver();
         }
     }
 
