@@ -111,9 +111,19 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        /*
         bool win = Health > 0;
         youWinLabel.SetActive(win);
         youLostLabel.SetActive(!win);
         gameOver.SetActive(true);
+        */
+        bool win = Health > 0;
+        if (win)
+        {
+            LevelManager.instance.SafelyCallLevelCompleted();
+        } else
+        {
+            LevelManager.instance.SafelyCallLevelFailed();
+        }
     }
 }

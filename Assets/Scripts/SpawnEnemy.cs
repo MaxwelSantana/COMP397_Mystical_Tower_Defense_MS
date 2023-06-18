@@ -7,7 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 [System.Serializable]
 public class Wave
 {
@@ -15,6 +15,7 @@ public class Wave
     public float spawnInterval = 2;
     public int maxEnemies = 20;
 }
+*/
 
 public class SpawnEnemy : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class SpawnEnemy : MonoBehaviour
     private float lastSpawnTime;
     private int enemiesSpawned = 0;
 
+    public bool StartWave { get; set; }
+
     // Use this for initialization
     void Start()
     {
@@ -40,7 +43,7 @@ public class SpawnEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 1
+        if (!StartWave) { return; }
         int currentWave = gameManager.Wave;
         if (currentWave < waves.Length)
         {
