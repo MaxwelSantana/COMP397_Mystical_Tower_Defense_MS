@@ -29,6 +29,13 @@ public class Building : MonoBehaviour
     private GameManager gameManager;
     private SpriteRenderer spriteRenderer;
 
+    [Header("Game Objects")]
+    public Button yesButton;
+    public GameObject yesNoPanel;
+    public GameObject updatePanel;
+
+    public Tile tile;
+
     [System.Serializable]
     public class Update
     {
@@ -47,23 +54,20 @@ public class Building : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    /*
     void FixedUpdate()
     {
         if (buildingState == BuildingState.staying)
         {
             yesNoPanel.SetActive(false);
-            arrows.SetActive(false);
             updatePanel.SetActive(false);
-            slayers.number = -0.2f;
+            //slayers.number = -0.2f;
             tile.stayingState = true;
         }
         if (buildingState == BuildingState.replacing)
         {
             yesNoPanel.SetActive(true);
-            arrows.SetActive(true);
             updatePanel.SetActive(false);
-            slayers.number = 0.2f;
+            //slayers.number = 0.2f;
             tile.stayingState = false;
 
             if (tile.isOcupied == true)
@@ -78,7 +82,6 @@ public class Building : MonoBehaviour
         if (buildingState == BuildingState.updating)
         {
             yesNoPanel.SetActive(false);
-            arrows.SetActive(false);
             if (nextUpdate + 1 != updates.Length)
             {
                 updatePanel.SetActive(true);
@@ -88,23 +91,18 @@ public class Building : MonoBehaviour
                 updatePanel.SetActive(false);
             }
 
-            slayers.number = 0.2f;
             tile.stayingState = true;
         }
         if (buildingState == BuildingState.firstStart)
         {
             yesNoPanel.SetActive(true);
-            arrows.SetActive(true);
             updatePanel.SetActive(false);
-            slayers.number = 0.2f;
             tile.stayingState = false;
         }
         if (buildingState == BuildingState.destroying)
         {
             yesNoPanel.SetActive(true);
-            arrows.SetActive(false);
             updatePanel.SetActive(false);
-            slayers.number = 0.2f;
             tile.stayingState = true;
         }
         if (gameManager.selectedBuilding != gameObject)
@@ -115,12 +113,72 @@ public class Building : MonoBehaviour
         spriteRenderer.sprite = updates[nextUpdate].updateLevelSprite;
 
     }
-    */
+
+    public void YesButton()
+    {
+        if (buildingState == BuildingState.firstStart)
+        {
+            buildingState = BuildingState.staying;
+            currentPosition = transform.position;
+            mouseDrag = false;
+            gameManager.mainPanel.SetActive(true);
+        }
+        if (buildingState == BuildingState.replacing)
+        {
+            buildingState = BuildingState.staying;
+            mouseDrag = false;
+            gameManager.mainPanel.SetActive(false);
+
+            currentPosition = transform.position;
+        }
+        if (buildingState == BuildingState.destroying)
+        {
+            buildingState = BuildingState.staying;
+            mouseDrag = false;
+            gameManager.mainPanel.SetActive(false);
+
+            Destroy(gameObject);
+        }
+        gameManager.buildingSelected = false;
+        gameManager.selectedBuilding = null;
+    }
+
+    public void NoButton()
+    {
+        if (buildingState == BuildingState.firstStart)
+        {
+            Destroy(gameObject);
+            gameManager.mainPanel.SetActive(true);
+        }
+        if (buildingState == BuildingState.replacing)
+        {
+            transform.position = currentPosition;
+            buildingState = BuildingState.staying;
+            mouseDrag = false;
+        }
+        if (buildingState == BuildingState.destroying)
+        {
+            buildingState = BuildingState.staying;
+            gameManager.mainPanel.SetActive(false);
+            mouseDrag = false;
+        }
+        gameManager.buildingSelected = false;
+        gameManager.selectedBuilding = null;
+    }
+
+    public void UpdateButton()
+    {
+        nextUpdate++;
+        buildingState = BuildingState.staying;
+        gameManager.selectedBuilding = null;
+        gameManager.buildingSelected = false;
+    }
 
     void OnMouseDown()
     {
         zCordinateOfMouse = Camera.main.WorldToScreenPoint(transform.position).z;
         mouseOffset = transform.position - mouseWorldPos();
+        print("CLICKED");
         if (gameManager.buildingSelected == false)
         {
             if (gameManager.replaceMode == true)
@@ -145,7 +203,6 @@ public class Building : MonoBehaviour
                 mouseDrag = false;
             }
             gameManager.selectedBuilding = gameObject;
-
         }
     }
 
