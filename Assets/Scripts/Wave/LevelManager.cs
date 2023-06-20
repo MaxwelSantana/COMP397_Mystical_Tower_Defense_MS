@@ -1,3 +1,4 @@
+using Core.Economy;
 using System;
 using TowerDefense.Level;
 using UnityEngine;
@@ -17,6 +18,13 @@ public class LevelManager : Singleton<LevelManager>
     /// </summary>
     public event Action levelFailed;
 
+    public int startingCurrency;
+
+    /// <summary>
+    /// The currency controller
+    /// </summary>
+    public Currency currency { get; protected set; }
+
     /// <summary>
     /// Caches the attached wave manager and subscribes to the spawning completed event
     /// Sets the level state to intro and ensures that the number of enemies is set to 0
@@ -24,6 +32,8 @@ public class LevelManager : Singleton<LevelManager>
     protected override void Awake()
     {
         base.Awake();
+
+        currency = new Currency(startingCurrency);
         waveManager = GetComponent<WaveManager2>();
     }
 
