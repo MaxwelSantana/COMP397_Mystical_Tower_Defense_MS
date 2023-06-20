@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     {
         mainPanel.SetActive(false);
         shop.SetActive(true);
-        //buildingSelected = true;
+        buildingSelected = true;
     }
 
     public void PlayAgain()
@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
         shop.SetActive(false);
         mainPanel.SetActive(true);
         GameObject house = Instantiate(structureArray[buildingNumber], spawnPointOfBuildings.transform.position, Quaternion.identity);
-        //selectedBuilding = house;
+        selectedBuilding = house;
         Building buildingScript = house.GetComponent<Building>();
         buildingScript.buildingState = Building.BuildingState.firstStart;
         buildingScript.mouseDrag = true;
