@@ -18,6 +18,11 @@ namespace Core.Economy
         public event Action currencyChanged;
 
         /// <summary>
+        /// Occurs when currency changed.
+        /// </summary>
+        public event Action cannotAffordAction;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Core.Economy.Currency" /> class.
         /// </summary>
         public Currency(int startingCurrency)
@@ -55,7 +60,12 @@ namespace Core.Economy
         /// <returns><c>true</c> if this cost is affordable; otherwise, <c>false</c>.</returns>
         public bool CanAfford(int cost)
         {
-            return currentCurrency >= cost;
+            bool canAfford = currentCurrency >= cost;
+            if (!canAfford && cannotAffordAction != null)
+            {
+                cannotAffordAction();
+            }
+            return canAfford;
         }
 
         /// <summary>

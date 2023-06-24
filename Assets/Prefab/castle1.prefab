@@ -262,10 +262,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - cost: 0
+  - cost: 4
     bullet: {fileID: 7978008972307653435, guid: 7c9a33df8a1e2884d9f13616542b7dac,
       type: 3}
     fireRate: 1
+  - cost: 2
+    bullet: {fileID: 7978008972307653435, guid: 7c9a33df8a1e2884d9f13616542b7dac,
+      type: 3}
+    fireRate: 2
 --- !u!114 &6908088078974408600
 MonoBehaviour:
   m_ObjectHideFlags: 0

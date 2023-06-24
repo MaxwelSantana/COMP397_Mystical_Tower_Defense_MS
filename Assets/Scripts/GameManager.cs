@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     [Header("Arrays")]
     public GameObject[] structureArray;
 
+    public ShopTowerButton[] shopTowerButtons;
+
     [Header("Game Objects")]
     public GameObject mainPanel;
     public GameObject shop;
@@ -89,6 +91,13 @@ public class GameManager : MonoBehaviour
         mainPanel.SetActive(false);
         shop.SetActive(true);
         buildingSelected = true;
+
+        foreach (var item in shopTowerButtons)
+        {
+            int currentCurrency = LevelManager.instance.currency.currentCurrency;
+            bool enableItem = currentCurrency > item.cost;
+            item.EnableButton(enableItem);
+        }
     }
 
     public void PlayAgain()
@@ -102,6 +111,7 @@ public class GameManager : MonoBehaviour
         shop.SetActive(false);
         mainPanel.SetActive(true);
         GameObject house = Instantiate(structureArray[buildingNumber], spawnPointOfBuildings.transform.position, Quaternion.identity);
+
         selectedBuilding = house;
         Building buildingScript = house.GetComponent<Building>();
         buildingScript.buildingState = Building.BuildingState.firstStart;

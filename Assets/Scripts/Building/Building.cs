@@ -4,6 +4,7 @@
     File: Building
 */
 
+using Core.Economy;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,6 +45,10 @@ public class Building : MonoBehaviour
     public Update[] updates;
     public int nextUpdate;
 
+    private BuildingData buildingData;
+    private Currency m_Currency;
+    private TowerLimit m_TowerLimit;
+
 
     void Start()
     {
@@ -52,6 +57,9 @@ public class Building : MonoBehaviour
         //Get the scripts
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        buildingData = gameObject.GetComponentInChildren<BuildingData>();
+        m_Currency = LevelManager.instance.currency;
+        m_TowerLimit = LevelManager.instance.limit;
     }
 
     void FixedUpdate()
@@ -122,6 +130,12 @@ public class Building : MonoBehaviour
             currentPosition = transform.position;
             mouseDrag = false;
             gameManager.mainPanel.SetActive(true);
+            m_TowerLimit.AddTower();
+
+            if (!m_Currency.TryPurchase(buildingData.CurrentLevel.cost))
+            {
+                Destroy(gameObject);
+            }
         }
         if (buildingState == BuildingState.replacing)
         {
@@ -168,7 +182,8 @@ public class Building : MonoBehaviour
 
     public void UpdateButton()
     {
-        nextUpdate++;
+        if (m_Currency.TryPurchase(buildingData.getNextLevel().cost))
+            nextUpdate++;
         buildingState = BuildingState.staying;
         gameManager.selectedBuilding = null;
         gameManager.buildingSelected = false;
@@ -178,7 +193,6 @@ public class Building : MonoBehaviour
     {
         zCordinateOfMouse = Camera.main.WorldToScreenPoint(transform.position).z;
         mouseOffset = transform.position - mouseWorldPos();
-        print("CLICKED");
         if (gameManager.buildingSelected == false)
         {
             if (gameManager.replaceMode == true)
