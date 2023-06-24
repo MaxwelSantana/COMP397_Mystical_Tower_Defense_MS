@@ -173,6 +173,10 @@ MonoBehaviour:
   buildingState: 0
   notToMove: 0
   mouseDrag: 0
+  yesButton: {fileID: 0}
+  yesNoPanel: {fileID: 0}
+  updatePanel: {fileID: 0}
+  tile: {fileID: 0}
   updates: []
   nextUpdate: 0
 --- !u!61 &531021114710961774
@@ -215,7 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - cost: 0
-    bullet: {fileID: 7978008972307653435, guid: 7c9a33df8a1e2884d9f13616542b7dac,
+    bullet: {fileID: 2178091331834305967, guid: 9999b29219a0f924a8efa5c5e1fb6fe2,
       type: 3}
     fireRate: 1
 --- !u!114 &6908088078974408600
