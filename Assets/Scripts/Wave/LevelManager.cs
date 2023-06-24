@@ -25,6 +25,9 @@ public class LevelManager : Singleton<LevelManager>
     /// </summary>
     public Currency currency { get; protected set; }
 
+    public int startingLimit;
+    public TowerLimit limit { get; protected set; }
+
     /// <summary>
     /// Caches the attached wave manager and subscribes to the spawning completed event
     /// Sets the level state to intro and ensures that the number of enemies is set to 0
@@ -35,6 +38,7 @@ public class LevelManager : Singleton<LevelManager>
 
         currency = new Currency(startingCurrency);
         waveManager = GetComponent<WaveManager2>();
+        limit = new TowerLimit(startingLimit);
     }
 
     /// <summary>

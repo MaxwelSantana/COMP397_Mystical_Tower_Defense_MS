@@ -1,4 +1,5 @@
 using Core.Economy;
+using System.Collections;
 using TowerDefense.Level;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,11 @@ namespace TowerDefense.UI.HUD
         public Text display;
 
         /// <summary>
+        /// The text element to display information on
+        /// </summary>
+        public GameObject notEnoughEnergyDisplay;
+
+        /// <summary>
         /// The currency prefix to display next to the amount
         /// </summary>
         public string currencySymbol = "$";
@@ -27,12 +33,14 @@ namespace TowerDefense.UI.HUD
         /// </summary>
         protected virtual void Start()
         {
+            notEnoughEnergyDisplay.SetActive(false);
             if (LevelManager.instance != null)
             {
                 m_Currency = LevelManager.instance.currency;
 
                 UpdateDisplay();
                 m_Currency.currencyChanged += UpdateDisplay;
+                m_Currency.cannotAffordAction += UpdateCannotAfordDisplay;
             }
             else
             {
@@ -58,6 +66,22 @@ namespace TowerDefense.UI.HUD
         {
             int current = m_Currency.currentCurrency;
             display.text = current.ToString();
+        }
+
+        protected void UpdateCannotAfordDisplay()
+        {
+            StartCoroutine(ActiveAndDeactivate());
+        }
+
+        IEnumerator ActiveAndDeactivate()
+        {
+
+            notEnoughEnergyDisplay.SetActive(true);
+
+            yield return new WaitForSeconds(1.0f); //will wait 5seconds before continuing
+
+            notEnoughEnergyDisplay.SetActive(false);
+
         }
     }
 }
