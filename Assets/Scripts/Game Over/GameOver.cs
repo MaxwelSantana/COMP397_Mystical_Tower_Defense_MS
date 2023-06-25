@@ -22,9 +22,14 @@ public class GameOver : MonoBehaviour
     /// <summary>
     /// Text to be displayed on popup
     /// </summary>
-    public string levelCompleteText = "{0} COMPLETE!";
+    public string levelCompleteText = "LEVEL COMPLETE!";
 
-    public string levelFailedText = "{0} FAILED!";
+    public string levelFailedText = "LEVEL FAILED!";
+
+    /// <summary>
+    /// Reference to the Text object that displays the result message
+    /// </summary>
+    public Text endGameMessageText;
 
     /// <summary>
     /// Background image
@@ -38,12 +43,15 @@ public class GameOver : MonoBehaviour
 
     public Color loseBackgroundColor;
 
+    private GameManager gameManager;
+
     /// <summary>
     /// Hide the panel if it is active at the start.
     /// Subscribe to the <see cref="LevelManager" /> completed/failed events.
     /// </summary>
     protected void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         if ((m_LevelManager == null) && LevelManager.instanceExists)
         {
             m_LevelManager = LevelManager.instance;
@@ -60,6 +68,7 @@ public class GameOver : MonoBehaviour
     /// </summary>
     protected void OpenEndGameScreen(string endResultText)
     {
+        endGameMessageText.text = endResultText;
         endGameCanvas.enabled = true;
 
         int score = CalculateFinalScore();
@@ -74,7 +83,7 @@ public class GameOver : MonoBehaviour
     /// <returns>Final score</returns>
     protected int CalculateFinalScore()
     {
-        return CalculateScore(10, 10);
+        return CalculateScore(m_LevelManager.Health, m_LevelManager.startingHealth);
     }
 
     /// <summary>

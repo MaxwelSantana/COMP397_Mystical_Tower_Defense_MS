@@ -4141,6 +4141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 166732295}
   - component: {fileID: 166732296}
+  - component: {fileID: 166732297}
   m_Layer: 5
   m_Name: towerLimitContainer
   m_TagString: Untagged
@@ -4178,6 +4179,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166732294}
   m_CullTransparentMesh: 1
+--- !u!114 &166732297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166732294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738876a3f15abe648a0bcf09cd52ede7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  display: {fileID: 1716477489}
 --- !u!1 &216014166
 GameObject:
   m_ObjectHideFlags: 0
@@ -7241,7 +7255,6 @@ MonoBehaviour:
   destroyMode: 0
   selectedBuilding: {fileID: 0}
   goldLabel: {fileID: 338975645}
-  healthLabel: {fileID: 623286765}
 --- !u!1 &1075275152
 GameObject:
   m_ObjectHideFlags: 0
@@ -9351,8 +9364,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 398ba81da93a18f4092a1c6938c337d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCurrency: 5
+  startingCurrency: 12
   startingLimit: 5
+  startingHealth: 11
 --- !u!114 &1884174159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9381,7 +9395,7 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 343698229004742195, guid: 21d6c7db1129b9a44be2475710cfc50c,
       type: 3}
     spawnInterval: 1.5
-    maxEnemies: 1
+    maxEnemies: 3
   timeBetweenWaves: 5
 --- !u!1 &1891446569
 GameObject:

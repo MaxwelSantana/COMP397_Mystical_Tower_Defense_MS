@@ -82,14 +82,15 @@ public class WaveManager2 : MonoBehaviour
                     waveChanged();
                 }
 
-                gameManager.Gold = Mathf.RoundToInt(gameManager.Gold * 1.1f);
+                //gameManager.Gold = Mathf.RoundToInt(gameManager.Gold * 1.1f);]
+                LevelManager.instance.currency.AddCurrency(1);
                 enemiesSpawned = 0;
                 lastSpawnTime = Time.time;
             }
         }
         else
         {
-            gameManager.GameOver();
+            LevelManager.instance.GameOver();
         }
     }
 

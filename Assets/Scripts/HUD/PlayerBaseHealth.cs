@@ -16,16 +16,11 @@ namespace TowerDefense.UI.HUD
         public Text display;
 
         /// <summary>
-        /// The highest health that the base can go to
-        /// </summary>
-        protected float m_MaxHealth;
-
-        /// <summary>
         /// Get the max health of the player base
         /// </summary>
         protected virtual void Start()
         {
-            m_MaxHealth = 10;
+            LevelManager.instance.onDamage += UpdateDisplay;
             UpdateDisplay();
         }
 
@@ -50,8 +45,8 @@ namespace TowerDefense.UI.HUD
             {
                 return;
             }
-            //float currentHealth = levelManager.GetAllHomeBasesHealth();
-            //display.text = currentHealth.ToString(CultureInfo.InvariantCulture);
+            int currentHealth = levelManager.Health;
+            display.text = currentHealth.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

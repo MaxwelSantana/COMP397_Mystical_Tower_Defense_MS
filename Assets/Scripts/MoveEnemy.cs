@@ -47,11 +47,7 @@ public class MoveEnemy : MonoBehaviour
             {
                 Destroy(gameObject);
 
-                //AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-                //AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
-                GameManager gameManager =
-                    GameObject.Find("GameManager").GetComponent<GameManager>();
-                gameManager.Health -= 1;
+                LevelManager.instance.TakeDamage();
             }
         }
     }
