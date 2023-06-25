@@ -35,7 +35,7 @@ public class Bullet2 : MonoBehaviour
         float timeInterval = Time.time - startTime;
         gameObject.transform.position = Vector3.Lerp(startPosition, targetPosition, timeInterval * speed / distance);
 
-        if (gameObject.transform.position.Equals(targetPosition))
+        if (gameObject.transform.position.x == targetPosition.x && gameObject.transform.position.y == targetPosition.y)
         {
             if (target != null)
             {

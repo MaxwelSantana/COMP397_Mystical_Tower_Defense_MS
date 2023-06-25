@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("Level1");
+        Time.timeScale = 1.0f;
     }
 
     public void BuyBuilding(int number)

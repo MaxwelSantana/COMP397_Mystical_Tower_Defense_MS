@@ -45,6 +45,8 @@ public class GameOver : MonoBehaviour
 
     private GameManager gameManager;
 
+    public PauseMenu pauseMenu;
+
     /// <summary>
     /// Hide the panel if it is active at the start.
     /// Subscribe to the <see cref="LevelManager" /> completed/failed events.
@@ -73,8 +75,7 @@ public class GameOver : MonoBehaviour
 
         int score = CalculateFinalScore();
         scorePanel.SetStars(score);
-        Time.timeScale = 0f;
-
+        pauseMenu.Pause();
     }
 
     /// <summary>

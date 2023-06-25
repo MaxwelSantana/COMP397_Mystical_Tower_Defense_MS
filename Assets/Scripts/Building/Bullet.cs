@@ -4,6 +4,7 @@
     File: Bullet
 */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,25 +35,29 @@ public class Bullet : MonoBehaviour
         float timeInterval = Time.time - startTime;
         gameObject.transform.position = Vector3.Lerp(startPosition, targetPosition, timeInterval * speed / distance);
 
-        if (gameObject.transform.position.Equals(targetPosition))
+        if (gameObject.transform.position.x == targetPosition.x && gameObject.transform.position.y == targetPosition.y)
         {
-            if (target != null)
-            {
-                Transform healthBarTransform = target.transform.Find("HealthBar");
-                HealthBar healthBar = healthBarTransform.gameObject.GetComponent<HealthBar>();
-                healthBar.currentHealth -= Mathf.Max(damage, 0);
-
-                if (healthBar.currentHealth <= 0)
+            try {
+                if (target != null)
                 {
-                    Destroy(target);
-                    //AudioSource audioSource = target.GetComponent<AudioSource>();
-                    //AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
+                    Transform healthBarTransform = target.transform.Find("HealthBar");
+                    HealthBar healthBar = healthBarTransform.gameObject.GetComponent<HealthBar>();
+                    healthBar.currentHealth -= Mathf.Max(damage, 0);
 
-                    //gameManager.Gold += 50;
-                    LevelManager.instance.currency.AddCurrency(1);
+                    if (healthBar.currentHealth <= 0)
+                    {
+                        Destroy(target);
+                        if (LevelManager.instance != null)
+                            LevelManager.instance.currency.AddCurrency(1);
+                    }
                 }
-            }
+            } catch (Exception e) { print(e.Message); }
             Destroy(gameObject);
         }
+    }
+
+    private bool IsInsideRange(Vector3 position, Vector3 targetPosition)
+    {
+        return true;
     }
 }

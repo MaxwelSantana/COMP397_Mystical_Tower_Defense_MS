@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 
@@ -23,10 +22,5 @@ namespace TowerDefense.Level
         /// </summary>
         [Tooltip("The delay from the previous spawn until when this agent is spawned")]
         public float delayToSpawn;
-
-        /// <summary>
-        /// The starting node, where the agent is spawned
-        /// </summary>
-        public Node startingNode;
     }
 }

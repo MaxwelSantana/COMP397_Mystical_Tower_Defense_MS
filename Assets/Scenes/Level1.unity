@@ -4836,6 +4836,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114361015752108500, guid: 2eb1899defae34da2b354d8e1d91da35,
         type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1059693722}
+    - target: {fileID: 114361015752108500, guid: 2eb1899defae34da2b354d8e1d91da35,
+        type: 3}
       propertyPath: background
       value: 
       objectReference: {fileID: 1037268904}
@@ -9240,9 +9245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 398ba81da93a18f4092a1c6938c337d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCurrency: 12
+  startingCurrency: 10
   startingLimit: 5
-  startingHealth: 5
+  startingHealth: 1
 --- !u!114 &1884174159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9270,12 +9275,16 @@ MonoBehaviour:
   waves:
   - enemyPrefab: {fileID: 343698229004742195, guid: 21d6c7db1129b9a44be2475710cfc50c,
       type: 3}
+    spawnInterval: 2
+    maxEnemies: 1
+  - enemyPrefab: {fileID: 343698229004742195, guid: 21d6c7db1129b9a44be2475710cfc50c,
+      type: 3}
     spawnInterval: 1.5
     maxEnemies: 3
   - enemyPrefab: {fileID: 343698229004742195, guid: 21d6c7db1129b9a44be2475710cfc50c,
       type: 3}
     spawnInterval: 1.5
-    maxEnemies: 3
+    maxEnemies: 5
   timeBetweenWaves: 5
 --- !u!1 &1891446569
 GameObject:
