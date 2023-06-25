@@ -40,36 +40,6 @@ public class GameManager : MonoBehaviour
 
     public int Wave { get; set; }
 
-    public Text goldLabel;
-    private int gold;
-    public int Gold
-    {
-        get
-        {
-            return gold;
-        }
-        set
-        {
-            gold = value;
-            goldLabel.GetComponent<Text>().text = "GOLD: " + gold;
-        }
-    }
-
-    public Text healthLabel;
-    private int health;
-    public int Health 
-    {
-        get
-        {
-            return health;
-        }
-        set
-        {
-            health = value;
-            healthLabel.GetComponent<Text>().text = "HEALTH: " + health;
-        }
-    }
-
     void Start()
     {
         mainPanel.SetActive(true);
@@ -78,8 +48,6 @@ public class GameManager : MonoBehaviour
         youLostLabel.SetActive(false);
         youWinLabel.SetActive(false);
 
-        Gold = 1000;
-        Health = 5;
         Wave = 0;
     }
 
@@ -95,13 +63,14 @@ public class GameManager : MonoBehaviour
         foreach (var item in shopTowerButtons)
         {
             int currentCurrency = LevelManager.instance.currency.currentCurrency;
-            bool enableItem = currentCurrency > item.cost;
+            bool enableItem = currentCurrency >= item.cost;
             item.EnableButton(enableItem);
         }
     }
 
     public void PlayAgain()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("Level1");
     }
 
@@ -117,23 +86,5 @@ public class GameManager : MonoBehaviour
         buildingScript.buildingState = Building.BuildingState.firstStart;
         buildingScript.mouseDrag = true;
         buildingSelected = true;
-    }
-
-    public void GameOver()
-    {
-        /*
-        bool win = Health > 0;
-        youWinLabel.SetActive(win);
-        youLostLabel.SetActive(!win);
-        gameOver.SetActive(true);
-        */
-        bool win = Health > 0;
-        if (win)
-        {
-            LevelManager.instance.SafelyCallLevelCompleted();
-        } else
-        {
-            LevelManager.instance.SafelyCallLevelFailed();
-        }
     }
 }

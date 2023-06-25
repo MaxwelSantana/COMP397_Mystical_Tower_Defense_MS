@@ -15,6 +15,7 @@ public class BuildingShooter : MonoBehaviour
 
     private float lastShotTime;
     private BuildingData buildingData;
+    private Building building;
 
     // Use this for initialization
     void Start()
@@ -22,11 +23,14 @@ public class BuildingShooter : MonoBehaviour
         enemiesInRange = new List<GameObject>();
         lastShotTime = Time.time;
         buildingData = gameObject.GetComponentInChildren<BuildingData>();
+        building = gameObject.GetComponentInChildren<Building>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (building.buildingState != Building.BuildingState.staying) return;
+
         GameObject target = null;
 
         float minimalEnemyDistance = float.MaxValue;

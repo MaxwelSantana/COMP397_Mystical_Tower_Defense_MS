@@ -18,6 +18,8 @@ public class LevelManager : Singleton<LevelManager>
     /// </summary>
     public event Action levelFailed;
 
+    public event Action onDamage;
+
     public int startingCurrency;
 
     /// <summary>
@@ -27,6 +29,9 @@ public class LevelManager : Singleton<LevelManager>
 
     public int startingLimit;
     public TowerLimit limit { get; protected set; }
+
+    public int startingHealth;
+    public int Health { get; private set; }
 
     /// <summary>
     /// Caches the attached wave manager and subscribes to the spawning completed event
@@ -39,6 +44,7 @@ public class LevelManager : Singleton<LevelManager>
         currency = new Currency(startingCurrency);
         waveManager = GetComponent<WaveManager2>();
         limit = new TowerLimit(startingLimit);
+        Health = startingHealth;
     }
 
     /// <summary>
@@ -60,6 +66,32 @@ public class LevelManager : Singleton<LevelManager>
         if (levelFailed != null)
         {
             levelFailed();
+        }
+    }
+
+    internal void TakeDamage()
+    {
+        Health--;
+        if (onDamage!= null)
+        {
+            onDamage();
+        }
+        if (Health < 1)
+        {
+            GameOver();
+        }
+    }
+
+    public void GameOver()
+    {
+        bool win = Health > 0;
+        if (win)
+        {
+            SafelyCallLevelCompleted();
+        }
+        else
+        {
+            SafelyCallLevelFailed();
         }
     }
 }
