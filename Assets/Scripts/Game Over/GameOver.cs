@@ -73,7 +73,7 @@ public class GameOver : MonoBehaviour
 
         int score = CalculateFinalScore();
         scorePanel.SetStars(score);
-
+        Time.timeScale = 0f;
 
     }
 

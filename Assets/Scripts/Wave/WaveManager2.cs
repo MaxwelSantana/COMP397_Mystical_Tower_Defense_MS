@@ -67,8 +67,8 @@ public class WaveManager2 : MonoBehaviour
                 enemiesSpawned < waves[currentWave].maxEnemies)
             {
                 lastSpawnTime = Time.time;
-                GameObject newEnemy = (GameObject)
-                    Instantiate(waves[currentWave].enemyPrefab);
+                //GameObject newEnemy = (GameObject) Instantiate(waves[currentWave].enemyPrefab);
+                GameObject newEnemy = Instantiate(waves[currentWave].enemyPrefab, waypoints[0].transform.position, Quaternion.identity);
                 newEnemy.GetComponent<MoveEnemy>().waypoints = waypoints;
                 enemiesSpawned++;
             }
