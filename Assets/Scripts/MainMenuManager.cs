@@ -21,6 +21,12 @@ public class MainMenuManager : MonoBehaviour
 
     public void NewGame()
     {
+        DataPersistenceManager.Instance.NewGame();
+        SceneManager.LoadScene("Level1");
+    }
+
+    public void LoadGame()
+    {
         SceneManager.LoadScene("Level1");
     }
 
