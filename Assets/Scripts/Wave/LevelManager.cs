@@ -4,7 +4,7 @@ using TowerDefense.Level;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
-public class LevelManager : Singleton<LevelManager>
+public class LevelManager : Singleton<LevelManager>, IDataPersistence
 {
     public WaveManager2 waveManager { get; protected set; }
 
@@ -45,6 +45,16 @@ public class LevelManager : Singleton<LevelManager>
         waveManager = GetComponent<WaveManager2>();
         limit = new TowerLimit(startingLimit);
         Health = startingHealth;
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.Health = data.health;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.health = this.Health;
     }
 
     /// <summary>
