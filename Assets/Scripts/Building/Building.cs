@@ -224,8 +224,6 @@ public class Building : MonoBehaviour
     {
         if (mouseDrag == true)
         {
-            print("mouseOffset: " + mouseOffset);
-            print("mouseWorldPos(): " + mouseWorldPos());
             transform.position = mouseWorldPos() + mouseOffset;
         }
     }

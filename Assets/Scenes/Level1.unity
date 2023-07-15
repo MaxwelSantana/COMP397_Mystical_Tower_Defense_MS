@@ -9177,7 +9177,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1884174156}
-  - component: {fileID: 1884174157}
   - component: {fileID: 1884174158}
   - component: {fileID: 1884174159}
   m_Layer: 0
@@ -9211,36 +9210,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1884174157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884174155}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dd6c2595b7953f4cbb69dc6fc206725, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 1495362231}
-  - {fileID: 1100225499}
-  - {fileID: 639512576}
-  - {fileID: 566576668}
-  - {fileID: 1242714674}
-  - {fileID: 1441500638}
-  - {fileID: 926861327}
-  - {fileID: 1111658157}
-  - {fileID: 1920840562}
-  testEnemyPrefab: {fileID: 343698229004742195, guid: 21d6c7db1129b9a44be2475710cfc50c,
-    type: 3}
-  waves:
-  - enemyPrefab: {fileID: 343698229004742195, guid: 21d6c7db1129b9a44be2475710cfc50c,
-      type: 3}
-    spawnInterval: 1.5
-    maxEnemies: 5
-  timeBetweenWaves: 5
 --- !u!114 &1884174158
 MonoBehaviour:
   m_ObjectHideFlags: 0

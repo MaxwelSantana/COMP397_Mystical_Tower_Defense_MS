@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
     public void PlayAgain()
     {
         Time.timeScale = 1.0f;
+        DataPersistenceManager.Instance.NewGame();
         SceneManager.LoadScene("Level1");
     }
 
