@@ -34,6 +34,8 @@ public class WaveManager2 : MonoBehaviour
 
     private bool startedWave = false;
 
+    private IGameObjectFactory objectFactory;
+
     public int totalWaves
     {
         get { return waves.Count(); }
@@ -45,6 +47,11 @@ public class WaveManager2 : MonoBehaviour
     }
 
     public event Action waveChanged;
+
+    private void Awake()
+    {
+        objectFactory = new GameObjectFactory();
+    }
 
     // Use this for initialization
     void Start()
@@ -68,7 +75,8 @@ public class WaveManager2 : MonoBehaviour
             {
                 lastSpawnTime = Time.time;
                 //GameObject newEnemy = (GameObject) Instantiate(waves[currentWave].enemyPrefab);
-                GameObject newEnemy = Instantiate(waves[currentWave].enemyPrefab, waypoints[0].transform.position, Quaternion.identity);
+                //GameObject newEnemy = Instantiate(waves[currentWave].enemyPrefab, waypoints[0].transform.position, Quaternion.identity);
+                GameObject newEnemy = objectFactory.CreateWaveEnemy(waves[currentWave], waypoints[0].transform.position);
                 newEnemy.GetComponent<MoveEnemy>().waypoints = waypoints;
                 enemiesSpawned++;
             }
