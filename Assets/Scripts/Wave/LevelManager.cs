@@ -1,8 +1,5 @@
 using Core.Economy;
 using System;
-using TowerDefense.Level;
-using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class LevelManager : Singleton<LevelManager>, IDataPersistence
 {
@@ -50,6 +47,7 @@ public class LevelManager : Singleton<LevelManager>, IDataPersistence
     public void LoadData(GameData data)
     {
         this.Health = data.health;
+        startingHealth = data.health;
     }
 
     public void SaveData(ref GameData data)

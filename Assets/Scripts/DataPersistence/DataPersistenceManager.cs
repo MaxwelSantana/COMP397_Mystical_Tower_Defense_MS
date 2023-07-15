@@ -46,7 +46,6 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void OnSceneUnloaded(Scene scene)
     {
-        Debug.Log("OnSceneUnloaded");
         SaveGame();
     }
 
@@ -62,7 +61,6 @@ public class DataPersistenceManager : MonoBehaviour
 
         if (this.gameData == null)
         {
-            Debug.Log("No data was found. Initializing data with default values.");
             NewGame();
         }
         // TODO - push the data to all scripts that need it
